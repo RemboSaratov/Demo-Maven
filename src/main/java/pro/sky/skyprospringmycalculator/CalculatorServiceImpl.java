@@ -5,28 +5,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
 
-    public String hello () {
-        return "Добро пожаловать в калькулятор";
+    public int plus(int a, int b) {
+        return a + b;
     }
 
-    public String plus (int a, int b) {
-        int c = 0;
-        c = a + b;
-        return a + " + " + b + " = " + c;
+    public int minus(int a, int b) {
+        return a - b;
     }
-    public String minus (int a, int b) {
-        int c = 0;
-        c = a - b;
-        return a + " - " + b + " = " + c;
+
+    public int multiply(int a, int b) {
+        return a * b;
     }
-    public String multiply (int a, int b) {
-        int c = 0;
-        c = a * b;
-        return a + " * " + b + " = " + c;
-    }
-    public String divide (int a, int b) {
-        int c = 0;
-        c = a / b;
-        return a + " / " + b + " = " + c;
+
+    public float divide(int a, int b) {
+        return (float) a / b;
     }
 }
