@@ -1,0 +1,55 @@
+package pro.sky.skyprospringmycalculator;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class CalculatorServiceImplTestParam {
+
+    CalculatorServiceImpl service = new CalculatorServiceImpl();
+
+    @ParameterizedTest
+    @MethodSource("arguments")
+
+    void Plus(int a, int b) {
+        assertEquals(a + b, service.plus(a, b));
+    }
+
+    @ParameterizedTest
+    @MethodSource("arguments")
+    void Minus(int a, int b) {
+        assertEquals(a - b, service.minus(a, b));
+    }
+
+    @ParameterizedTest
+    @MethodSource("arguments")
+    void Multiply(int a, int b) {
+        assertEquals(a * b, service.multiply(a, b));
+    }
+
+    @ParameterizedTest
+    @MethodSource("arguments")
+    void Divide(int a, int b) {
+        if (b == 0) {
+            assertThrows(IllegalArgumentException.class, () -> service.divide(a, b));
+            return;
+        }
+        assertEquals((float) a / b, service.divide(a, b));
+    }
+
+    private static Stream<Arguments> arguments() {
+        return Stream.of(
+                Arguments.of(1, 2),
+                Arguments.of(-1, 2),
+                Arguments.of(1,-2),
+                Arguments.of(1,0),
+                Arguments.of(0,2),
+                Arguments.of(-1,-2)
+        );
+    }
+}

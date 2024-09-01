@@ -5,19 +5,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
 
-    public int plus(int a, int b) {
+    public int plus(Integer a, Integer b) {
         return a + b;
     }
 
-    public int minus(int a, int b) {
+    public int minus(Integer a, Integer b) {
         return a - b;
     }
 
-    public int multiply(int a, int b) {
+    public int multiply(Integer a, Integer b) {
         return a * b;
     }
 
-    public float divide(int a, int b) {
+    public float divide(Integer a, Integer b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Деление на ноль");
+        }
         return (float) a / b;
     }
 }
